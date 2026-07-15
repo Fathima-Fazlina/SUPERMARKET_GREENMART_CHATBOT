@@ -10,6 +10,4 @@ __pycache__/
 
 # VS Code
 .vscode/
-
-# Retrieval index
-retrieval/product_index.pkl
+
