@@ -1,0 +1,59 @@
+{
+  "store_name": "GreenMart",
+  "tagline": "Fresh food, fair prices, friendly faces",
+  "hours": {
+    "monday_to_friday": "8:00 AM - 9:00 PM",
+    "saturday": "8:00 AM - 10:00 PM",
+    "sunday": "9:00 AM - 7:00 PM",
+    "public_holidays": "10:00 AM - 4:00 PM"
+  },
+  "locations": [
+    {
+      "branch": "Main Street",
+      "address": "12 Main Street, Riverside",
+      "phone": "+1-555-0123",
+      "has_delivery": true
+    },
+    {
+      "branch": "Lakeview",
+      "address": "88 Lakeview Ave, Riverside",
+      "phone": "+1-555-0456",
+      "has_delivery": false
+    }
+  ],
+  "categories": ["Produce", "Dairy", "Bakery", "Meat & Seafood", "Pantry", "Beverages", "Household"],
+  "products": [
+    {"id": "P001", "name": "Organic whole milk (1L)", "category": "Dairy", "price": 3.49, "in_stock": true, "organic": true},
+    {"id": "P002", "name": "Free-range eggs (dozen)", "category": "Dairy", "price": 4.99, "in_stock": true, "organic": false},
+    {"id": "P003", "name": "Sourdough bread loaf", "category": "Bakery", "price": 5.25, "in_stock": true, "organic": false},
+    {"id": "P004", "name": "Bananas (per lb)", "category": "Produce", "price": 0.59, "in_stock": true, "organic": false},
+    {"id": "P005", "name": "Organic spinach (bag)", "category": "Produce", "price": 3.99, "in_stock": false, "organic": true},
+    {"id": "P006", "name": "Chicken breast (per lb)", "category": "Meat & Seafood", "price": 6.49, "in_stock": true, "organic": false},
+    {"id": "P007", "name": "Salmon fillet (per lb)", "category": "Meat & Seafood", "price": 12.99, "in_stock": true, "organic": false},
+    {"id": "P008", "name": "Brown rice (2kg)", "category": "Pantry", "price": 4.75, "in_stock": true, "organic": false},
+    {"id": "P009", "name": "Olive oil (500ml)", "category": "Pantry", "price": 8.99, "in_stock": true, "organic": true},
+    {"id": "P010", "name": "Orange juice (1L)", "category": "Beverages", "price": 3.25, "in_stock": true, "organic": false},
+    {"id": "P011", "name": "Sparkling water (6-pack)", "category": "Beverages", "price": 4.50, "in_stock": true, "organic": false},
+    {"id": "P012", "name": "Dish soap (500ml)", "category": "Household", "price": 2.99, "in_stock": true, "organic": false}
+  ],
+  "promotions": [
+    {"title": "10% off all Dairy", "valid_until": "2026-07-31", "details": "Applies automatically at checkout, no code needed"},
+    {"title": "Buy 2 Get 1 Free on Sparkling Water", "valid_until": "2026-07-20", "details": "Mix and match any flavor"},
+    {"title": "Free delivery on orders over $50", "valid_until": "2026-08-15", "details": "Main Street branch only"}
+  ],
+  "policies": {
+    "returns": "Unopened packaged goods can be returned within 7 days with receipt. Fresh produce and perishables are non-returnable but we offer store credit if the item was defective.",
+    "payment_methods": ["Credit/debit card", "Cash", "Mobile pay (Apple Pay, Google Pay)", "GreenMart gift card"],
+    "delivery": "Available from Main Street branch only, within a 5-mile radius, $4.99 flat fee (free over $50), same-day if ordered before 2 PM."
+  },
+  "loyalty_program": {
+    "name": "GreenMart Rewards",
+    "how_it_works": "Earn 1 point per $1 spent. 100 points = $5 off your next purchase.",
+    "signup": "Free to join at checkout or via the store app."
+  },
+  "faq": [
+    {"q": "Do you sell gluten-free products?", "a": "Yes, look for the green 'GF' label on Pantry and Bakery shelves."},
+    {"q": "Can I use coupons with promotions?", "a": "Yes, one manufacturer coupon can be combined with one store promotion per item."},
+    {"q": "Do you price match?", "a": "We price match local competitors on identical branded items with proof of the lower price."}
+  ]
+}

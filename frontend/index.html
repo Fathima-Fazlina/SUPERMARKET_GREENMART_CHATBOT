@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenMart Assistant — AI chatbot for grocery stores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1B4332;
+    --leaf: #52B788;
+    --leaf-light: #B7E4C7;
+    --paper: #FFFCF3;
+    --ink: #22292B;
+    --gold: #E9C46A;
+    --line: #D8D2C2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px clamp(20px, 5vw, 64px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 20px;
+    color: var(--forest);
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--gold); }
+  nav .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--forest);
+    background: var(--leaf-light);
+    padding: 6px 12px;
+    border-radius: 100px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+    padding: clamp(40px, 6vw, 90px) clamp(20px, 5vw, 64px);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  @media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; }
+  }
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--forest);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 18px;
+    display: inline-block;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 4px;
+  }
+  h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.05;
+    color: var(--forest);
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+  .hero p.lead {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #445;
+    max-width: 480px;
+    margin-bottom: 28px;
+  }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--forest);
+    color: var(--paper);
+    font-weight: 600;
+    padding: 14px 26px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    transition: transform 0.15s ease;
+  }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-secondary {
+    border: 1.5px solid var(--forest);
+    color: var(--forest);
+    font-weight: 600;
+    padding: 13px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  /* ---------- RECEIPT CHAT (signature element) ---------- */
+  .receipt-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  .receipt {
+    background: white;
+    width: 100%;
+    max-width: 340px;
+    box-shadow: 0 20px 50px rgba(27, 67, 50, 0.18);
+    position: relative;
+    padding: 0;
+    font-family: 'Space Mono', monospace;
+  }
+  .receipt::before, .receipt::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: 14px;
+    background:
+      radial-gradient(circle at 8px 8px, var(--paper) 7px, transparent 7px) 0 0 / 16px 16px repeat-x;
+  }
+  .receipt::before { top: -1px; }
+  .receipt::after { bottom: -1px; transform: rotate(180deg); }
+
+  .receipt-head {
+    text-align: center;
+    padding: 26px 20px 14px;
+    border-bottom: 1.5px dashed var(--line);
+  }
+  .receipt-head .store {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18px;
+    color: var(--forest);
+  }
+  .receipt-head .sub {
+    font-size: 10px;
+    color: #888;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .receipt-body {
+    padding: 16px 20px;
+    height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .line {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .line.user {
+    color: var(--ink);
+  }
+  .line.user::before { content: "YOU  › "; color: #999; }
+  .line.assistant {
+    color: var(--forest);
+    border-left: 2px solid var(--leaf);
+    padding-left: 8px;
+  }
+  .line .tag {
+    display: block;
+    font-size: 9.5px;
+    color: var(--gold);
+    background: #fdf6e3;
+    display: inline-block;
+    margin-top: 4px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+  }
+
+  .receipt-input {
+    display: flex;
+    border-top: 1.5px dashed var(--line);
+    padding: 14px 20px 22px;
+    gap: 8px;
+  }
+  .receipt-input input {
+    flex: 1;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    outline: none;
+  }
+  .receipt-input input:focus { border-color: var(--leaf); }
+  .receipt-input button {
+    background: var(--forest);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 14px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .receipt-input button:disabled { opacity: 0.5; }
+  .receipt-foot {
+    text-align: center;
+    font-size: 9px;
+    color: #aaa;
+    padding-bottom: 18px;
+    letter-spacing: 1px;
+  }
+
+  /* ---------- FEATURES ---------- */
+  .features {
+    background: var(--forest);
+    padding: clamp(50px, 6vw, 90px) clamp(20px, 5vw, 64px);
+  }
+  .features-inner { max-width: 1200px; margin: 0 auto; }
+  .features h2 {
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--paper);
+    font-size: clamp(26px, 3.5vw, 36px);
+    margin-bottom: 40px;
+    max-width: 560px;
+    line-height: 1.15;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+  @media (max-width: 800px) {
+    .feature-grid { grid-template-columns: 1fr; }
+  }
+  .feature-card {
+    background: var(--forest);
+    padding: 30px 26px;
+  }
+  .feature-card .num {
+    font-family: 'Space Mono', monospace;
+    color: var(--gold);
+    font-size: 12px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .feature-card h3 {
+    color: var(--paper);
+    font-size: 17px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .feature-card p {
+    color: rgba(255,252,243,0.7);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 30px clamp(20px, 5vw, 64px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 12.5px;
+    color: #778;
+    border-top: 1px solid var(--line);
+  }
+  footer .brand { font-family: 'Space Mono', monospace; color: var(--forest); }
+
+  /* ---------- PREVIEW CARD ---------- */
+  .preview-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(27, 67, 50, 0.15);
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .preview-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .preview-avatar {
+    width: 38px; height: 38px;
+    border-radius: 9px;
+    background: var(--leaf);
+    color: var(--forest);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .preview-title { font-weight: 600; font-size: 14.5px; color: var(--forest); }
+  .preview-status {
+    font-size: 11.5px; color: #6b9e82; display: flex; align-items: center; gap: 5px; margin-top: 2px;
+  }
+  .preview-dot { width: 6px; height: 6px; border-radius: 50%; background: #52B788; }
+  .preview-msg {
+    background: var(--paper);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .preview-msg.assistant {
+    background: var(--leaf-light);
+    color: var(--forest);
+  }
+  .preview-cta {
+    display: block;
+    text-align: center;
+    background: var(--forest);
+    color: var(--paper);
+    font-weight: 600;
+    font-size: 13.5px;
+    padding: 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Green<span>Mart</span></div>
+  
+</nav>
+
+<section class="hero">
+  <div>
+    <span class="eyebrow">AI customer assistant</span>
+    <h1>Every question,<br>answered on the spot.</h1>
+    <p class="lead">
+      GreenMart Assistant reads intent, checks live stock across thousands of products,
+      and replies like a staff member who actually knows the aisles.
+    </p>
+    <div class="hero-ctas">
+      <a href="chat.html" class="btn-primary">Start chatting →</a>
+      <a href="#how" class="btn-secondary">How it works</a>
+    </div>
+  </div>
+
+  <div class="preview-card">
+      <div class="preview-header">
+        <div class="preview-avatar">GM</div>
+        <div>
+          <div class="preview-title">GreenMart Assistant</div>
+          <div class="preview-status"><span class="preview-dot"></span> Online now</div>
+        </div>
+      </div>
+      <div class="preview-msg">"Do you have organic milk in stock?"</div>
+      <div class="preview-msg assistant">"Yes! We have organic whole milk (1L) at $3.49, currently in stock at both branches."</div>
+      <a href="chat.html" class="preview-cta">Open full chat →</a>
+    </div>
+  </section>
+
+<section class="features" id="how">
+  <div class="features-inner">
+    <h2>Under the hood: intent detection, product search, and a language model working together.</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="num">STEP 1</span>
+        <h3>Detect intent</h3>
+        <p>A trained classifier tags every message — product search, store hours, complaint, and more — before anything else happens.</p>
+      </div>
+      <div class="feature-card">
+        <span class="num">STEP 2</span>
+        <h3>Search the catalog</h3>
+        <p>Relevant intents trigger a search across thousands of products by meaning, not just keyword matching.</p>
+      </div>
+      <div class="feature-card">
+        <span class="num">STEP 3</span>
+        <h3>Generate the reply</h3>
+        <p>The language model answers using only real store data — hours, stock, prices, policies — never guessing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">GreenMart</div>
+  <div>Fresh food, fair prices, friendly faces.</div>
+</footer>
+
+<script>
+  const API_URL = "http://localhost:8000/api/chat";
+  const messagesEl = document.getElementById("messages");
+  const inputEl = document.getElementById("userInput");
+  const sendBtn = document.getElementById("sendBtn");
+  let history = [];
+
+  function addLine(role, content, intent) {
+    const div = document.createElement("div");
+    div.className = "line " + role;
+    div.textContent = content;
+    if (intent) {
+      const tag = document.createElement("span");
+      tag.className = "tag";
+      tag.textContent = intent.toUpperCase();
+      div.appendChild(document.createElement("br"));
+      div.appendChild(tag);
+    }
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  async function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addLine("user", text);
+    history.push({ role: "user", content: text });
+    inputEl.value = "";
+    sendBtn.disabled = true;
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, history: history.slice(0, -1) }),
+      });
+      const data = await response.json();
+      addLine("assistant", data.reply, data.intent);
+      history.push({ role: "assistant", content: data.reply });
+    } catch (err) {
+      addLine("assistant", "Connection error — make sure the backend server is running.");
+      console.error(err);
+    } finally {
+      sendBtn.disabled = false;
+    }
+  }
+
+  sendBtn.addEventListener("click", sendMessage);
+  inputEl.addEventListener("keydown", (e) => { if (e.key === "Enter") sendMessage(); });
+</script>
+
+</body>
+</html>

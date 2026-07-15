@@ -1,0 +1,273 @@
+message,intent
+do you have vegan options,general_faq
+is the store open right now,store_hours
+is diapers discounted,promotions
+is rice cheaper here than other stores,price_comparison
+do you have bananas?,product_search
+do you have any coupons,promotions
+the bread was spoiled when it arrived,issue_resolution
+the bananas i bought was expired,issue_resolution
+does greenmart have detergent,product_search
+is there a sale on cheese,promotions
+what time do you open,store_hours
+do you sell olive oil,product_search
+can i earn points on delivery orders too,loyalty_program
+can you tell me the price of butter,price_comparison
+how do i check my loyalty points,loyalty_program
+can i get eggs here,product_search
+any deals today,promotions
+is detergent available,product_search
+is butter on sale,price_comparison
+what can you help me with,chitchat
+what's happening with my order,order_tracking
+do you sell milk,product_search
+the milk i bought was expired,issue_resolution
+the diapers i bought was expired,issue_resolution
+what time do you open on monday,store_hours
+can i return orange juice without a receipt,policy
+what's the price of chicken breast,price_comparison
+how much does bread cost,price_comparison
+can you tell me the price of chicken breast,price_comparison
+do you sell bread,product_search
+what's on offer this week,promotions
+hello,chitchat
+can i get yogurt here,product_search
+is cheese discounted,promotions
+is bread in stock,product_search
+do you have eggs?,product_search
+order status please,order_tracking
+how does the loyalty program work,loyalty_program
+is there a customer service desk,general_faq
+is pasta cheaper here than other stores,price_comparison
+the pasta i bought was expired,issue_resolution
+how much is yogurt?,price_comparison
+when do you close today,store_hours
+how does delivery work,policy
+when will my order arrive,order_tracking
+what's your holiday schedule,store_hours
+current promotions please,promotions
+can i pay with cash,policy
+how much does tomatoes cost,price_comparison
+what are your weekend hours,store_hours
+"delivery is late, what's going on",order_tracking
+good afternoon,chitchat
+how late are you open tonight,store_hours
+how much is eggs?,price_comparison
+is bread available,product_search
+can i get spinach here,product_search
+any discounts on cereal?,promotions
+does greenmart have salmon,product_search
+do you sell baby products,general_faq
+how do returns work for perishable items,policy
+what payment methods do you accept,policy
+what time do the doors open,store_hours
+which aisle is orange juice in,product_search
+do you sell spinach,product_search
+when's your earliest opening time,store_hours
+can i return opened items,policy
+what's the cost of milk per unit,price_comparison
+is eggs available,product_search
+any discounts on orange juice?,promotions
+when should i expect my groceries,order_tracking
+the bananas was spoiled when it arrived,issue_resolution
+the orange juice was spoiled when it arrived,issue_resolution
+how much does apples cost,price_comparison
+is anyone there,chitchat
+is pasta available,product_search
+do you accept gift cards,policy
+how much does coffee cost,price_comparison
+are you open late tonight,store_hours
+what's the cost of detergent per unit,price_comparison
+my order hasn't arrived,order_tracking
+where is my order,order_tracking
+do points expire,loyalty_program
+is diapers available,product_search
+can i speak to someone about a problem,issue_resolution
+how much is rice?,price_comparison
+is there wifi in store,general_faq
+is pasta discounted,promotions
+is bananas on sale,price_comparison
+do you have shopping carts for kids,general_faq
+is olive oil cheaper here than other stores,price_comparison
+see you later,chitchat
+are you open on christmas,store_hours
+do you have salmon?,product_search
+how much is cereal?,price_comparison
+the yogurt i bought was expired,issue_resolution
+where can I find pasta,product_search
+what's the price of yogurt,price_comparison
+can you tell me the price of salmon,price_comparison
+track my delivery for me,order_tracking
+has my delivery shipped yet,order_tracking
+thank you for your help,chitchat
+is coffee cheaper here than other stores,price_comparison
+do you offer same-day delivery,policy
+what's my points balance,loyalty_program
+is rice discounted,promotions
+is cereal on sale,price_comparison
+can i cancel my order after placing it,policy
+is orange juice available,product_search
+bye,chitchat
+do you sell halal meat,general_faq
+what's the price of eggs,price_comparison
+any discounts on salmon?,promotions
+my butter was damaged,issue_resolution
+is bananas cheaper here than other stores,price_comparison
+good evening,chitchat
+are you open on sunday,store_hours
+do you have parking,general_faq
+have a nice day,chitchat
+what promotions do you have right now,promotions
+what are the benefits of joining rewards,loyalty_program
+any discounts on bananas?,promotions
+which aisle is diapers in,product_search
+can you give me an eta on my delivery,order_tracking
+can you tell me the price of bread,price_comparison
+which aisle is detergent in,product_search
+is apples discounted,promotions
+does greenmart have cereal,product_search
+do you carry organic cheese,product_search
+what time does lakeview branch close,store_hours
+do you have bread?,product_search
+my diapers was damaged,issue_resolution
+do you carry organic pasta,product_search
+looking for rice,product_search
+is the store closed today,store_hours
+do you sell gluten-free products,general_faq
+how much is 100 points worth,loyalty_program
+the coffee was spoiled when it arrived,issue_resolution
+do you sell alcohol,general_faq
+my rice was damaged,issue_resolution
+do you carry organic yogurt,product_search
+can i get olive oil here,product_search
+looking for diapers,product_search
+can i return salmon without a receipt,policy
+can i pay with apple pay,policy
+i haven't received my groceries yet,order_tracking
+what's the cost of eggs per unit,price_comparison
+where can I find orange juice,product_search
+price check on butter,price_comparison
+can you track my order,order_tracking
+can i get chicken breast here,product_search
+what time does the main street branch open,store_hours
+how long do i have to return an item,policy
+what's the cost of cereal per unit,price_comparison
+do you carry organic apples,product_search
+who are you,chitchat
+what's your return policy,policy
+i want to file a complaint,issue_resolution
+hey there,chitchat
+is delivery free over a certain amount,policy
+my delivery was missing an item,issue_resolution
+the tomatoes was spoiled when it arrived,issue_resolution
+price check on cereal,price_comparison
+is butter in stock,product_search
+can i return eggs without a receipt,policy
+do you deliver to my area,policy
+do you have self-checkout,general_faq
+how are you,chitchat
+where can I find bread,product_search
+can i redeem my points,loyalty_program
+price check on bananas,price_comparison
+"i placed an order yesterday, where is it",order_tracking
+do you price match,general_faq
+can i use coupons with promotions,general_faq
+what's the delivery fee,policy
+what do i get with rewards membership,loyalty_program
+"order number 4521, any update",order_tracking
+what's the price of cheese,price_comparison
+are you a real person,chitchat
+do you sell chicken breast,product_search
+how many points do i have,loyalty_program
+i need an update on my online order,order_tracking
+how do i earn points,loyalty_program
+is pasta in stock,product_search
+does greenmart have orange juice,product_search
+can you tell me the price of diapers,price_comparison
+how much is orange juice?,price_comparison
+is olive oil in stock,product_search
+what time do you close on saturday,store_hours
+thanks a lot,chitchat
+is there a deli counter,general_faq
+price check on spinach,price_comparison
+any discounts on yogurt?,promotions
+is there a sale on cereal,promotions
+is there a sale on eggs,promotions
+does greenmart have yogurt,product_search
+is eggs on sale,price_comparison
+can i get detergent here,product_search
+do you have a pharmacy,general_faq
+my milk was damaged,issue_resolution
+what's the price of coffee,price_comparison
+do you accept credit cards,policy
+where can I find coffee,product_search
+do you close early on sundays,store_hours
+is butter cheaper here than other stores,price_comparison
+i received the wrong item,issue_resolution
+how do i join the rewards program,loyalty_program
+appreciate it,chitchat
+is there a sale on salmon,promotions
+can i return rice without a receipt,policy
+looking for detergent,product_search
+is bread on sale,price_comparison
+is there a sale on butter,promotions
+good morning,chitchat
+do you have pasta?,product_search
+any discounts on tomatoes?,promotions
+looking for apples,product_search
+can i return tomatoes without a receipt,policy
+my orange juice was damaged,issue_resolution
+the detergent was spoiled when it arrived,issue_resolution
+what's the price of cereal,price_comparison
+how do i get a refund,policy
+price check on eggs,price_comparison
+what's your exchange policy,policy
+thanks!,chitchat
+looking for chicken breast,product_search
+where can I find chicken breast,product_search
+how much does eggs cost,price_comparison
+still waiting on my delivery,order_tracking
+how long until my order gets here,order_tracking
+can you check on my delivery,order_tracking
+did my order go through,order_tracking
+my bananas was damaged,issue_resolution
+which aisle is milk in,product_search
+hey,chitchat
+is my order out for delivery,order_tracking
+can i bring my dog into the store,general_faq
+what are your hours,store_hours
+price check on tomatoes,price_comparison
+how much is butter?,price_comparison
+is the store open now,store_hours
+hi,chitchat
+what's the cost of salmon per unit,price_comparison
+do you have a bathroom in store,general_faq
+you're helpful,chitchat
+the spinach i bought was expired,issue_resolution
+where can I find apples,product_search
+do you sell apples,product_search
+are you open on public holidays,store_hours
+is yogurt on sale,price_comparison
+is there a bakery counter in store,general_faq
+which aisle is bread in,product_search
+is there a sale on rice,promotions
+looking for yogurt,product_search
+is bananas discounted,promotions
+do you have coffee?,product_search
+is coffee in stock,product_search
+which aisle is salmon in,product_search
+can i return bananas without a receipt,policy
+does greenmart have spinach,product_search
+how much does spinach cost,price_comparison
+i'm not happy with my order,issue_resolution
+can you tell me the price of olive oil,price_comparison
+do you carry organic detergent,product_search
+what's the cost of spinach per unit,price_comparison
+do you carry organic bananas,product_search
+can i use my points today,loyalty_program
+do you accept food stamps or EBT,general_faq
+is orange juice in stock,product_search
+how do i sign up for greenmart rewards,loyalty_program
+does signing up for rewards cost anything,loyalty_program
+how many points do i need for a discount,loyalty_program
+is the rewards program free,loyalty_program
