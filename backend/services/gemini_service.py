@@ -39,7 +39,7 @@ def generate_reply(system_prompt: str, history: list, user_message: str) -> str:
     )
 
     response = client.models.generate_content(
-        model="gemini-3.1-flash-lite",
+        model="gemini-flash-lite-latest",
         contents=gemini_history,
         config=types.GenerateContentConfig(
             system_instruction=system_prompt,
