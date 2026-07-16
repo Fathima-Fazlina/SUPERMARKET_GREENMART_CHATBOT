@@ -1,30 +1,60 @@
 """
-Wraps the product retrieval/search logic (from retrieval/search.py, build_index.py).
+Wraps the product retrieval/search logic using Gemini Embeddings API.
+Replaces sentence-transformers to keep deployment bundle size small.
 """
+import os
 import pickle
-import numpy as np
-from sentence_transformers import SentenceTransformer
 
-_model = None
+import numpy as np
+from google import genai
+
+_client = None
 _index_data = None
 
-def _load():
-    global _model, _index_data
-    if _model is None:
-        _model = SentenceTransformer("all-MiniLM-L6-v2")
+EMBEDDING_MODEL = "text-embedding-004"
+
+
+def _get_client():
+    """Lazy-initialize the Gemini client once."""
+    global _client
+    if _client is None:
+        _client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+    return _client
+
+
+def _load_index():
+    """Lazy-load the product index once."""
+    global _index_data
     if _index_data is None:
         with open("retrieval/product_index.pkl", "rb") as f:
             _index_data = pickle.load(f)
-    return _model, _index_data
+    return _index_data
 
-def _cosine_similarity(query_vec, all_vecs):
+
+def _embed_query(query: str) -> list[float]:
+    """Embed a single query string using Gemini text-embedding-004."""
+    client = _get_client()
+    result = client.models.embed_content(
+        model=EMBEDDING_MODEL,
+        contents=[query],
+    )
+    return result.embeddings[0].values
+
+
+def _cosine_similarity(query_vec: np.ndarray, all_vecs: np.ndarray) -> np.ndarray:
+    """Computes cosine similarity between a query and all product embeddings."""
     query_norm = query_vec / np.linalg.norm(query_vec)
     all_norms = all_vecs / np.linalg.norm(all_vecs, axis=1, keepdims=True)
     return all_norms @ query_norm
 
-def search_products(query: str, top_n: int = 5):
-    model, index_data = _load()
-    query_embedding = model.encode([query])[0]
+
+def search_products(query: str, top_n: int = 5) -> list[dict]:
+    """
+    Returns the top_n most relevant products for a given customer query,
+    using Gemini embeddings for semantic search.
+    """
+    index_data = _load_index()
+    query_embedding = np.array(_embed_query(query))
     similarities = _cosine_similarity(query_embedding, index_data["embeddings"])
     top_indices = np.argsort(similarities)[::-1][:top_n]
     results = []
